@@ -15,12 +15,10 @@ class DialogRecyclerAdapter(
 ) : RecyclerView.Adapter<DialogRecyclerAdapter.DialogHolder>() {
 
     class DialogHolder(view: View) : RecyclerView.ViewHolder(view){
-
         fun bind(message: Message) {
             itemView.name.text = message.name
             itemView.text.text = message.text
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =

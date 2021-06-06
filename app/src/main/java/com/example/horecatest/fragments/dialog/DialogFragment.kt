@@ -3,8 +3,6 @@ package com.example.horecatest.fragments.dialog
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,8 +28,6 @@ class DialogFragment : Fragment() {
         recyclerDialog.layoutManager = LinearLayoutManager(context)
         recyclerDialog.adapter = DialogRecyclerAdapter(messages)
     }
-
-
 
     private fun reloadMessages() {
         messages.clear()
