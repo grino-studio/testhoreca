@@ -17,14 +17,8 @@ import kotlinx.android.synthetic.main.fragment_scroll.*
 
 class DialogFragment : Fragment() {
 
-    private val messages = ArrayList<Message>()
-
     private lateinit var adapter: DialogRecyclerAdapter
     private lateinit var layoutManager: LinearLayoutManager
-
-    companion object {
-        private const val PAGE_COUNT = 20
-    }
 
     private var page = 0
 
@@ -34,38 +28,26 @@ class DialogFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        reloadMessages()
+        JsonRepository.readMessages(context)
 
         layoutManager = LinearLayoutManager(context)
-        adapter = DialogRecyclerAdapter(getPage(page))
+        adapter = DialogRecyclerAdapter(JsonRepository.getPage(page))
 
-        recyclerDialog.layoutManager = LinearLayoutManager(context)
-        recyclerDialog.adapter = DialogRecyclerAdapter(getPage(page))
+        recyclerDialog.layoutManager = layoutManager
+        recyclerDialog.adapter = adapter
         recyclerDialog.addOnScrollListener(object : PaginationScrollListener(layoutManager) {
             private var isLoading = false
-            override fun isLastPage() = page >= messages.count()/PAGE_COUNT - 1
+            override fun isLastPage() = JsonRepository.isLastPage(page)
             override fun isLoading() = isLoading
             override fun loadMoreItems() {
                 isLoading = true
                 page += 1
-                val messagePage = getPage(page)
+                val messagePage = JsonRepository.getPage(page)
                 recyclerDialog.post(Runnable { adapter.addData(messagePage) })
                 isLoading = false
             }
         })
 
-    }
-
-    fun getPage(page: Int) : ArrayList<Message> {
-        val pageList = ArrayList<Message>()
-        for (i in page * PAGE_COUNT until (page + 1) * PAGE_COUNT)
-            pageList.add(messages[i])
-        return pageList
-    }
-
-    private fun reloadMessages() {
-        messages.clear()
-        JsonRepository.readMessages(context)?.let { messages.addAll(it) }
     }
 
 }
