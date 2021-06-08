@@ -1,4 +1,4 @@
-package com.example.horecatest.fragments.dialog
+package com.example.horecatest.ui.listeners
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
