@@ -6,8 +6,9 @@
     android:layout_height="match_parent">
 
     <androidx.appcompat.widget.Toolbar
-        app:title="Тестовое задание"
-        android:background="@color/purple_200"
+        app:title="@string/app_name"
+        android:background="@color/primaryColor"
+        app:titleTextColor="@color/primaryTextColor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
