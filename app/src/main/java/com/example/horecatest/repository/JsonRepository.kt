@@ -1,11 +1,9 @@
 package com.example.horecatest.repository
 
 import android.content.Context
-import com.example.horecatest.fragments.dialog.DialogFragment
 import com.example.horecatest.models.Dialog
 import com.example.horecatest.models.Message
 import com.google.gson.Gson
-
 
 object JsonRepository {
 
