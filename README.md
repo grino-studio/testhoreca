@@ -1,4 +1,4 @@
-# testhoreca
+# Horeca test
 
 Демонстрация постраничной загрузки сообщений в RecyclerView
 
